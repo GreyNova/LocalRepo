@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum - CodeZen</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .code-editor {
+            font-family: 'JetBrains Mono', monospace;
+            background: #1a1a2e;
+            color: #f8f8f2;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            width: 100%;
+            min-height: 400px;
+            resize: vertical;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .code-editor:focus {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+        }
+        
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .language-select {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .problem-panel,
+        .editor-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+        }
+        
+        .test-cases {
+            margin-top: var(--spacing-lg);
+        }
+        
+        .test-case {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .test-case h4 {
+            color: var(--accent-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .test-case code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .constraints {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: var(--spacing-sm);
+            margin: var(--spacing-md) 0;
+        }
+        
+        .actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+        
+        .status-panel {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+            display: none;
+        }
+        
+        .status-panel.show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <h1 class="logo">CodeZen</h1>
+                    <span class="logo-subtitle">Competitive Programming</span>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">← Back to Problems</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn btn-secondary">Save Draft</button>
+                    <button class="btn btn-primary" onclick="submitSolution()">Submit Solution</button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="page-header">
+                <div>
+                    <h2 class="page-title">Two Sum</h2>
+                    <span class="difficulty easy">Easy</span>
+                </div>
+                <div class="problem-stats">
+                    <span class="stat">👤 12.5k solved</span>
+                    <span class="stat">💎 850 pts</span>
+                    <span class="stat">⏱️ Time Limit: 2s</span>
+                </div>
+            </div>
+
+            <div class="split-layout">
+                <!-- Problem Description Panel -->
+                <div class="problem-panel">
+                    <h3>Problem Description</h3>
+                    <p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.</p>
+                    
+                    <p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+                    
+                    <p>You can return the answer in any order.</p>
+
+                    <div class="constraints">
+                        <h4>Constraints:</h4>
+                        <ul>
+                            <li>2 ≤ nums.length ≤ 10⁴</li>
+                            <li>-10⁹ ≤ nums[i] ≤ 10⁹</li>
+                            <li>-10⁹ ≤ target ≤ 10⁹</li>
+                            <li>Only one valid answer exists.</li>
+                        </ul>
+                    </div>
+
+                    <div class="test-cases">
+                        <h3>Example Test Cases</h3>
+                        
+                        <div class="test-case">
+                            <h4>Example 1:</h4>
+                            <p><strong>Input:</strong> <code>nums = [2,7,11,15], target = 9</code></p>
+                            <p><strong>Output:</strong> <code>[0,1]</code></p>
+                            <p><strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].</p>
+                        </div>
+
+                        <div class="test-case">
+                            <h4>Example 2:</h4>
+                            <p><strong>Input:</strong> <code>nums = [3,2,4], target = 6</code></p>
+                            <p><strong>Output:</strong> <code>[1,2]</code></p>
+                        </div>
+
+                        <div class="test-case">
+                            <h4>Example 3:</h4>
+                            <p><strong>Input:</strong> <code>nums = [3,3], target = 6</code></p>
+                            <p><strong>Output:</strong> <code>[0,1]</code></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Editor Panel -->
+                <div class="editor-panel">
+                    <div class="editor-header">
+                        <h3>Code Editor</h3>
+                        <select class="language-select" id="languageSelect">
+                            <option value="python">Python</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="java">Java</option>
+                            <option value="cpp">C++</option>
+                        </select>
+                    </div>
+                    
+                    <textarea class="code-editor" id="codeEditor" placeholder="Write your solution here...">def twoSum(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: List[int]
+    """
+    # Your solution here
+    pass</textarea>
+                    
+                    <div class="actions">
+                        <button class="btn btn-secondary" onclick="runTests()">Run Tests</button>
+                        <button class="btn btn-primary" onclick="submitSolution()">Submit</button>
+                        <button class="btn btn-secondary" onclick="resetCode()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Panel -->
+            <div class="status-panel" id="statusPanel">
+                <h3>Test Results</h3>
+                <div id="testResults"></div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Code templates for different languages
+        const codeTemplates = {
+            python: `def twoSum(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: List[int]
+    """
+    # Your solution here
+    pass`,
+            
+            javascript: `/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    // Your solution here
+};`,
+            
+            java: `class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        // Your solution here
+        return new int[]{};
+    }
+}`,
+            
+            cpp: `class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // Your solution here
+        return {};
+    }
+};`
+        };
+
+        // Language selector functionality
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            const codeEditor = document.getElementById('codeEditor');
+            codeEditor.value = codeTemplates[selectedLanguage];
+        });
+
+        // Run tests functionality
+        function runTests() {
+            const statusPanel = document.getElementById('statusPanel');
+            const testResults = document.getElementById('testResults');
+            
+            statusPanel.classList.add('show');
+            testResults.innerHTML = `
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="color: var(--success);">✅</span>
+                        <span>Test Case 1: Passed</span>
+                    </div>
+                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--text-muted);">
+                        Input: nums = [2,7,11,15], target = 9<br>
+                        Expected: [0,1]<br>
+                        Output: [0,1]<br>
+                        Runtime: 12ms
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="color: var(--success);">✅</span>
+                        <span>Test Case 2: Passed</span>
+                    </div>
+                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--text-muted);">
+                        Input: nums = [3,2,4], target = 6<br>
+                        Expected: [1,2]<br>
+                        Output: [1,2]<br>
+                        Runtime: 8ms
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <span style="color: var(--success);">✅</span>
+                        <span>Test Case 3: Passed</span>
+                    </div>
+                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: var(--text-muted);">
+                        Input: nums = [3,3], target = 6<br>
+                        Expected: [0,1]<br>
+                        Output: [0,1]<br>
+                        Runtime: 10ms
+                    </div>
+                </div>
+                
+                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid var(--success); border-radius: var(--radius-sm); padding: var(--spacing-sm); margin-top: var(--spacing-md);">
+                    <strong style="color: var(--success);">All test cases passed! 🎉</strong><br>
+                    <span style="color: var(--text-secondary);">Average Runtime: 10ms | Memory Usage: 15.2 MB</span>
+                </div>
+            `;
+        }
+
+        // Submit solution functionality
+        function submitSolution() {
+            const statusPanel = document.getElementById('statusPanel');
+            const testResults = document.getElementById('testResults');
+            
+            statusPanel.classList.add('show');
+            testResults.innerHTML = `
+                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid var(--success); border-radius: var(--radius-sm); padding: var(--spacing-md); text-align: center;">
+                    <h4 style="color: var(--success); margin-bottom: var(--spacing-sm);">🎉 Accepted!</h4>
+                    <p>Your solution has been accepted and submitted successfully.</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-md);">
+                        <div>
+                            <strong>Runtime:</strong><br>
+                            <span style="color: var(--accent-primary);">10ms</span>
+                        </div>
+                        <div>
+                            <strong>Memory:</strong><br>
+                            <span style="color: var(--accent-primary);">15.2 MB</span>
+                        </div>
+                        <div>
+                            <strong>Points:</strong><br>
+                            <span style="color: var(--accent-primary);">+850</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Simulate success feedback
+            setTimeout(() => {
+                alert('🎉 Congratulations! You\'ve earned 850 points!');
+            }, 1000);
+        }
+
+        // Reset code functionality
+        function resetCode() {
+            const languageSelect = document.getElementById('languageSelect');
+            const codeEditor = document.getElementById('codeEditor');
+            const selectedLanguage = languageSelect.value;
+            
+            if (confirm('Are you sure you want to reset your code? This will remove all your changes.')) {
+                codeEditor.value = codeTemplates[selectedLanguage];
+                document.getElementById('statusPanel').classList.remove('show');
+            }
+        }
+
+        // Add syntax highlighting simulation
+        document.getElementById('codeEditor').addEventListener('input', function() {
+            // Simple syntax highlighting could be added here
+            // For now, we'll just maintain the monospace font and basic styling
+        });
+
+        // Add auto-resize functionality
+        document.getElementById('codeEditor').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.max(400, this.scrollHeight) + 'px';
+        });
+    </script>
+</body>
+</html>

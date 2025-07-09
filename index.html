@@ -1,2 +1,270 @@
-<p>this is a repo</p>
-<p>This is a new para</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeZen - Competitive Programming</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <h1 class="logo">CodeZen</h1>
+                    <span class="logo-subtitle">Competitive Programming</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#problems" class="nav-link active" data-page="problems">Problems</a>
+                    <a href="#contests" class="nav-link" data-page="contests">Contests</a>
+                    <a href="#leaderboard" class="nav-link" data-page="leaderboard">Leaderboard</a>
+                    <a href="#profile" class="nav-link" data-page="profile">Profile</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn btn-secondary">Sign In</button>
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Problems Page -->
+            <section id="problems-page" class="page active">
+                <div class="page-header">
+                    <h2 class="page-title">Problem Set</h2>
+                    <div class="page-controls">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search problems..." class="search-input">
+                            <button class="search-btn">🔍</button>
+                        </div>
+                        <select class="filter-select">
+                            <option>All Difficulties</option>
+                            <option>Easy</option>
+                            <option>Medium</option>
+                            <option>Hard</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="problems-grid">
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <h3 class="problem-title">Two Sum</h3>
+                            <span class="difficulty easy">Easy</span>
+                        </div>
+                        <p class="problem-description">Find two numbers in an array that add up to a target sum.</p>
+                        <div class="problem-stats">
+                            <span class="stat">👤 12.5k solved</span>
+                            <span class="stat">💎 850 pts</span>
+                        </div>
+                        <a href="problem.html" class="btn btn-primary btn-small">Solve</a>
+                    </div>
+
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <h3 class="problem-title">Binary Tree Traversal</h3>
+                            <span class="difficulty medium">Medium</span>
+                        </div>
+                        <p class="problem-description">Implement inorder, preorder, and postorder traversal of a binary tree.</p>
+                        <div class="problem-stats">
+                            <span class="stat">👤 8.3k solved</span>
+                            <span class="stat">💎 1200 pts</span>
+                        </div>
+                        <a href="problem.html" class="btn btn-primary btn-small">Solve</a>
+                    </div>
+
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <h3 class="problem-title">Dynamic Programming Master</h3>
+                            <span class="difficulty hard">Hard</span>
+                        </div>
+                        <p class="problem-description">Solve complex optimization problems using dynamic programming techniques.</p>
+                        <div class="problem-stats">
+                            <span class="stat">👤 2.1k solved</span>
+                            <span class="stat">💎 2500 pts</span>
+                        </div>
+                        <a href="problem.html" class="btn btn-primary btn-small">Solve</a>
+                    </div>
+
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <h3 class="problem-title">Graph Algorithms</h3>
+                            <span class="difficulty medium">Medium</span>
+                        </div>
+                        <p class="problem-description">Implement shortest path algorithms in weighted graphs.</p>
+                        <div class="problem-stats">
+                            <span class="stat">👤 5.7k solved</span>
+                            <span class="stat">💎 1800 pts</span>
+                        </div>
+                        <a href="problem.html" class="btn btn-primary btn-small">Solve</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contests Page -->
+            <section id="contests-page" class="page">
+                <div class="page-header">
+                    <h2 class="page-title">Active Contests</h2>
+                </div>
+                
+                <div class="contests-grid">
+                    <div class="contest-card live">
+                        <div class="contest-status">🔴 Live</div>
+                        <h3 class="contest-title">Weekly Challenge #47</h3>
+                        <p class="contest-description">Test your skills in this week's programming challenge</p>
+                        <div class="contest-info">
+                            <span class="contest-time">⏱️ 2h 15m remaining</span>
+                            <span class="contest-participants">👥 1,847 participants</span>
+                        </div>
+                        <button class="btn btn-primary">Join Contest</button>
+                    </div>
+
+                    <div class="contest-card upcoming">
+                        <div class="contest-status">🟡 Upcoming</div>
+                        <h3 class="contest-title">Algorithm Marathon</h3>
+                        <p class="contest-description">4-hour intensive algorithm solving competition</p>
+                        <div class="contest-info">
+                            <span class="contest-time">⏰ Starts in 6h 30m</span>
+                            <span class="contest-participants">👥 523 registered</span>
+                        </div>
+                        <button class="btn btn-secondary">Register</button>
+                    </div>
+
+                    <div class="contest-card past">
+                        <div class="contest-status">⚪ Completed</div>
+                        <h3 class="contest-title">Data Structures Cup</h3>
+                        <p class="contest-description">Advanced data structures and algorithms</p>
+                        <div class="contest-info">
+                            <span class="contest-time">📊 Ended 2 days ago</span>
+                            <span class="contest-participants">👥 2,156 participants</span>
+                        </div>
+                        <button class="btn btn-secondary">View Results</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leaderboard Page -->
+            <section id="leaderboard-page" class="page">
+                <div class="page-header">
+                    <h2 class="page-title">Global Leaderboard</h2>
+                </div>
+                
+                <div class="leaderboard-table">
+                    <div class="leaderboard-header">
+                        <span>Rank</span>
+                        <span>User</span>
+                        <span>Rating</span>
+                        <span>Problems Solved</span>
+                    </div>
+                    
+                    <div class="leaderboard-row">
+                        <span class="rank">1</span>
+                        <div class="user-info">
+                            <div class="avatar">🏆</div>
+                            <span class="username">CodeMaster</span>
+                        </div>
+                        <span class="rating master">3247</span>
+                        <span class="problems-solved">1,847</span>
+                    </div>
+
+                    <div class="leaderboard-row">
+                        <span class="rank">2</span>
+                        <div class="user-info">
+                            <div class="avatar">🥈</div>
+                            <span class="username">AlgoNinja</span>
+                        </div>
+                        <span class="rating candidate">3156</span>
+                        <span class="problems-solved">1,623</span>
+                    </div>
+
+                    <div class="leaderboard-row">
+                        <span class="rank">3</span>
+                        <div class="user-info">
+                            <div class="avatar">🥉</div>
+                            <span class="username">ByteWizard</span>
+                        </div>
+                        <span class="rating candidate">3089</span>
+                        <span class="problems-solved">1,542</span>
+                    </div>
+
+                    <div class="leaderboard-row">
+                        <span class="rank">4</span>
+                        <div class="user-info">
+                            <div class="avatar">👤</div>
+                            <span class="username">DataDriven</span>
+                        </div>
+                        <span class="rating expert">2847</span>
+                        <span class="problems-solved">1,234</span>
+                    </div>
+
+                    <div class="leaderboard-row">
+                        <span class="rank">5</span>
+                        <div class="user-info">
+                            <div class="avatar">👤</div>
+                            <span class="username">LogicLord</span>
+                        </div>
+                        <span class="rating expert">2756</span>
+                        <span class="problems-solved">1,156</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Page -->
+            <section id="profile-page" class="page">
+                <div class="profile-header">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-info">
+                        <h2 class="profile-name">Your Profile</h2>
+                        <span class="profile-rating expert">Rating: 2,456</span>
+                    </div>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <h3>Problems Solved</h3>
+                        <span class="stat-number">847</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Contests Participated</h3>
+                        <span class="stat-number">23</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Global Rank</h3>
+                        <span class="stat-number">#127</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Streak</h3>
+                        <span class="stat-number">15 days</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <span class="activity-type solved">✅</span>
+                            <span class="activity-text">Solved "Binary Search Tree Validation"</span>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-type participated">🏆</span>
+                            <span class="activity-text">Participated in Weekly Challenge #46</span>
+                            <span class="activity-time">3 days ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-type solved">✅</span>
+                            <span class="activity-text">Solved "Dynamic Programming Optimization"</span>
+                            <span class="activity-time">1 week ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
